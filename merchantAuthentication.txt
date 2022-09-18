@@ -1,0 +1,2 @@
+Username OnePlus;Password 123;MerchantID 93;
+Username Samsung;Password 123;MerchantID 24;
