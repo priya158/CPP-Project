@@ -60,7 +60,7 @@ void Authentication::CustomerRegistration()
 	std::regex s("^[a-zA-Z0-9\\s]+$");
 user1:
 	std::cout << "Enter your desired username : ";
-	getline(cin >> ws, username1);
+	std::getline(std::cin >> std::ws, username1);
 	if (!(regex_match(username1, s)))
 	{
 		std::cout << "\n";
@@ -110,7 +110,7 @@ user1:
 		std::cout << "Awesome....Your Registration is successful......" << std::endl;
 	}
 	std::cout << "Your USERNAME :"
-		 << "\e[1m" << username1 << std::endl;
+		  << username1 << std::endl;
 	file1 << "Username " << username1 << ";"
 		  << "Password " << password1 << ";"
 		  << "CustomerID " << idGeneration() << ";" << std::endl;
@@ -132,11 +132,11 @@ void Authentication::CustomerLogin()
 	std::cout << "Hello Customer...\nSo Glad to see you back......." << std::endl;
 usera:
 	std::cout << "Please enter the following details" << std::endl;
-	std::cout << "\e[1m"
+	std::cout
 		 << "USERNAME :";
-	std::cin >> username1;
+	std::getline(std::cin >> std::ws, username1);
 retry:
-	std::cout << "\e[1m"
+	std::cout 
 		 << "PASSWORD :";
 	std::cin >> password1;
 
@@ -183,7 +183,7 @@ retry:
 	if (cAuthenticate == 0)
 	{
 		std::cout << "\n";
-		    std::cout << "       ===Invalid name! Please try again.===\n";
+		    std::cout << "       ===Invalid username or password! Please try again.===\n";
 		    std::cout << "\n";
 		    goto usera;
 	}
@@ -201,8 +201,8 @@ void Authentication::MerchantRegistration()
 
 	std::regex s("^[a-zA-Z0-9\\s]+$");
 user2:
-	cout << "Enter your desired username : ";
-	getline(cin >> ws, username2);
+	std::cout << "Enter your desired username : ";
+	std::getline(std::cin >> std::ws, username2);
 	if (!(regex_match(username2, s)))
 	{
 		std::cout << "\n";
@@ -252,7 +252,7 @@ passwordStart2:
 		std::cout << "Awesome....Your Registration is successful......" << std::endl;
 	}
 	std::cout << "Your USERNAME :"
-		 << "\e[1m" << username2 << std::endl;
+		  << username2 << std::endl;
 	file2 << "Username "<< username2 << ";" 
 	      << "Password "<< password2 << ";"
 		  << "MerchantID " << idGeneration() << ";" << std::endl;
@@ -274,11 +274,11 @@ void Authentication::MerchantLogin()
 	std::cout << "Hello Merchant..........So Glad to see you back......." << std::endl;
 merchant:
 	std::cout << "Please enter the following details" << endl;
-	std::cout << "\e[1m"
+	std::cout
 		 << "USERNAME :";
-	std::cin >> username2;
+	std::getline(std::cin >> std::ws, username2);
 retry:
-	std::cout << "\e[1m"
+	std::cout
 		 << "PASSWORD :";
 	std::cin >> password2;
 
@@ -317,18 +317,19 @@ retry:
 		{
 			std::cout << "\nLOGIN SUCCESSFUL...\nWe're glad that you're here.\nThanks for logging in\n";
 			flag = false;
-			mer << MerchantID << endl;
+			mer << MerchantID << std::endl;
 		}
 	}
 	ifound = false;
 	if (mAuthenticate == 0)
 	{
 		std::cout << "\n";
-		std::cout << "       ===Invalid name! Please try again.===\n";
+		std::cout << "       ===Invalid username or password! Please try again.===\n";
 		std::cout << "\n";
 		goto merchant;
 	}
 	merchantFile.close();
+	mer.close();
 }
 
 ///////////////////////////////////////////////////////////////////////
@@ -382,9 +383,10 @@ passwordStart3:
 	{
 		std::cout << "Awesome....Your Registration is successful......" << std::endl;
 	}
-	cout << "Your USERNAME :"
-		 << "\e[1m" << username3 << std::endl;
+	std::cout << "Your USERNAME :"
+		  << username3 << std::endl;
 	file3 << username3 << " " << password3 << std::endl;
+	std::cout << "\n";
 	file3.close();
 	std::cout << "\n";
 	return;
@@ -392,24 +394,44 @@ passwordStart3:
 void Authentication::CourierLogin()
 {
 	bool ifound = false, flag = false;
-	std::string line8, token, pass;
-	std::string Check_name;
+	std::string line8, token, pass3;
+	std::string checkName;
 	std::string delimiter = ";";
 	size_t pos = 0;
 	std::string username3, password3, u, p;
 	int courierAuthenticate = 0;
+	//int count = 0;
 	std::cout << "Hello Courier........So Glad to see you back......." << std::endl;
 courier:
 	std::cout << "Please enter the following details" << std::endl;
-	std::cout << "\e[1m"
+	std::cout
 		 << "USERNAME :";
-	std::cin >> username3;
+	std::getline(std::cin >> std::ws, username3);
 retry:
-	std::cout << "\e[1m"
-		 << "PASSWORD :";
+	std::cout 
+	     << "PASSWORD :";
 	std::cin >> password3;
 
 	ifstream courierFile1("CourierAuthentication.txt");
+	// while (courierFile1 >> u >> p)
+	// {
+	// 	if (u == username3 && p == password3)
+	// 	{
+	// 		count = 1;
+	// 	}
+	// }
+	// courierFile1.close();
+	// if (count == 1)
+	// {
+	// 	cout << "\nLOGIN SUCCESSFUL...\nThanks for being a partner with us\nThanks for logging in.\n";
+	// }
+	// else
+	// {
+	// 	std::cout << "\n";
+	// 	std::cout << "       ===Invalid Username or password! Please try again.===\n";
+	// 	std::cout << "\n";
+	// 	mainMenu();
+	// }
 	while (std::getline(courierFile1, line8))
 	{
 		while ((pos = line8.find(delimiter)) != std::string::npos)
@@ -418,16 +440,16 @@ retry:
 
 			if (token.rfind("Username ", 0) == 0)
 			{
-				Check_name = token.substr(9);
-				if (username3 == Check_name)
+				checkName = token.substr(9);
+				if (username3 == checkName)
 				{
 					ifound = true;
 				}
 			}
 			if (token.rfind("Password ", 0) == 0 && ifound)
 			{
-				pass = token.substr(9);
-				if (pass == password3)
+				pass3 = token.substr(9);
+				if (pass3 == password3)
 				{
 					flag = true;
 					courierAuthenticate++;
@@ -446,10 +468,9 @@ retry:
 	{
 	
 		std::cout << "\n";
-		std::cout << "       ===Invalid name! Please try again.===\n";
+		std::cout << "       ===Invalid username or password! Please try again.===\n";
 		std::cout << "\n";
 		goto courier;
 	}
 	courierFile1.close();
-
 }
