@@ -244,19 +244,20 @@ void Merchant::merchantOptions()
                         merchantOptions();
                 }break;
                 case 3:{
-                        displayOutOfStock();
+                        OrderStatusView();
+                        
                         merchantOptions();
                 }break;
                 case 4: {
-                        assignCourier();
+                        displayOutOfStock();
                         merchantOptions();
                 }break;
                 case 5: {
-                        OrderStatusView();
+                        cancelledProducts();
                         merchantOptions();
                 }break;
                 case 6: {
-                        cancelledProducts();
+                        assignCourier();
                         merchantOptions();
                 }break;
                 case 7: {

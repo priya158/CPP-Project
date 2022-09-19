@@ -1,3 +1,2 @@
-Shibin 123456
-Asha 123456
-Dev 1235
+Username Priyanka S;Password 2001;CustomerID 93;
+Username Aishvarya;Password 1998;CustomerID 48;
