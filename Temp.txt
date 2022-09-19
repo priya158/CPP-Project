@@ -1,0 +1,7 @@
+ProductID 29;MerchantID 24;Name Vivo V25;Price 36000;Type Electronics;Count 10;
+ProductID 90;MerchantID 24;Name Canon EOS 1500D;Price 39900;Type Electronics;Count 12;
+ProductID 88;MerchantID 24;Name Dining set;Price 17845;Type Furniture;Count 10;
+ProductID 95;MerchantID 24;Name Flare dress;Price 1120;Type Fashion;Count 18;
+ProductID 3;MerchantID 24;Name Redmi note 11;Price 20999;Type Electronics;Count 12;
+ProductID 4;MerchantID 24;Name Chair;Price 18000;Type Furniture;Count 7;
+ProductID 12;Name Men shirt;Price 18200;Type Fashion;Count 16;

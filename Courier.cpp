@@ -27,7 +27,7 @@ void Courier::courierMenu()
         case 2: {
             auth.CourierRegistration();
             courierMenu();
-            courierOptions();
+            //courierOptions();
         }break;
         case 3: {
             auth.mainMenu();

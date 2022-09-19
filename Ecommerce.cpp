@@ -399,8 +399,8 @@ void Authentication::CourierLogin()
 	std::string delimiter = ";";
 	size_t pos = 0;
 	std::string username3, password3, u, p;
-	int courierAuthenticate = 0;
-	//int count = 0;
+	//int courierAuthenticate = 0;
+	int count = 0;
 	std::cout << "Hello Courier........So Glad to see you back......." << std::endl;
 courier:
 	std::cout << "Please enter the following details" << std::endl;
@@ -413,64 +413,64 @@ retry:
 	std::cin >> password3;
 
 	ifstream courierFile1("CourierAuthentication.txt");
-	// while (courierFile1 >> u >> p)
-	// {
-	// 	if (u == username3 && p == password3)
-	// 	{
-	// 		count = 1;
-	// 	}
-	// }
-	// courierFile1.close();
-	// if (count == 1)
-	// {
-	// 	cout << "\nLOGIN SUCCESSFUL...\nThanks for being a partner with us\nThanks for logging in.\n";
-	// }
-	// else
-	// {
-	// 	std::cout << "\n";
-	// 	std::cout << "       ===Invalid Username or password! Please try again.===\n";
-	// 	std::cout << "\n";
-	// 	mainMenu();
-	// }
-	while (std::getline(courierFile1, line8))
+	while (courierFile1 >> u >> p)
 	{
-		while ((pos = line8.find(delimiter)) != std::string::npos)
+		if (u == username3 && p == password3)
 		{
-			token = line8.substr(0, pos);
-
-			if (token.rfind("Username ", 0) == 0)
-			{
-				checkName = token.substr(9);
-				if (username3 == checkName)
-				{
-					ifound = true;
-				}
-			}
-			if (token.rfind("Password ", 0) == 0 && ifound)
-			{
-				pass3 = token.substr(9);
-				if (pass3 == password3)
-				{
-					flag = true;
-					courierAuthenticate++;
-				}
-			}
-			line8.erase(0, pos + delimiter.length());
+			count = 1;
 		}
-		if (flag)
-		{
-			cout << "\nLOGIN SUCCESSFUL...\nWe're glad that you're here.\nThanks for logging in\n";
-			flag = false;
-		}
-	}
-	ifound = false;
-	if (courierAuthenticate == 0)
-	{
-	
-		std::cout << "\n";
-		std::cout << "       ===Invalid username or password! Please try again.===\n";
-		std::cout << "\n";
-		goto courier;
 	}
 	courierFile1.close();
+	if (count == 1)
+	{
+		cout << "\nLOGIN SUCCESSFUL...\nThanks for being a partner with us\nThanks for logging in.\n";
+	}
+	else
+	{
+		std::cout << "\n";
+		std::cout << "       ===Invalid Username or password! Please try again.===\n";
+		std::cout << "\n";
+		mainMenu();
+	}
+	// while (std::getline(courierFile1, line8))
+	// {
+	// 	while ((pos = line8.find(delimiter)) != std::string::npos)
+	// 	{
+	// 		token = line8.substr(0, pos);
+
+	// 		if (token.rfind("Username ", 0) == 0)
+	// 		{
+	// 			checkName = token.substr(9);
+	// 			if (username3 == checkName)
+	// 			{
+	// 				ifound = true;
+	// 			}
+	// 		}
+	// 		if (token.rfind("Password ", 0) == 0 && ifound)
+	// 		{
+	// 			pass3 = token.substr(9);
+	// 			if (pass3 == password3)
+	// 			{
+	// 				flag = true;
+	// 				courierAuthenticate++;
+	// 			}
+	// 		}
+	// 		line8.erase(0, pos + delimiter.length());
+	// 	}
+	// 	if (flag)
+	// 	{
+	// 		cout << "\nLOGIN SUCCESSFUL...\nWe're glad that you're here.\nThanks for logging in\n";
+	// 		flag = false;
+	// 	}
+	// }
+	// ifound = false;
+	// if (courierAuthenticate == 0)
+	// {
+	
+	// 	std::cout << "\n";
+	// 	std::cout << "       ===Invalid username or password! Please try again.===\n";
+	// 	std::cout << "\n";
+	// 	goto courier;
+	// }
+	// courierFile1.close();
 }
